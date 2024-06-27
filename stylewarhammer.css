@@ -725,7 +725,7 @@ html, body {
 }
   
 
-/* Admin Options Dropdown */
+/* Admin */
 select#opcjeAdmina {
   margin: 20px;
   padding: 10px;
@@ -733,7 +733,7 @@ select#opcjeAdmina {
   
 }
 
-/* Article List Styles */
+/* Artykuł style */
 .article-list {
   max-width: 800px;
   margin: 20px auto;
@@ -767,21 +767,21 @@ select#opcjeAdmina {
 }
 
 .article-btn .btn-delete {
-  background-color: #d9534f;
+  background-color: #e64640;
   border: none;
   cursor: pointer;
 }
 
 .article-btn .btn-delete:hover {
-  background-color: #c9302c;
+  background-color: #ab2b26;
 }
 
 .article-btn a {
-  background-color: #0275d8;
+  background-color: #c9cf15;
 }
 
 .article-btn a:hover {
-  background-color: #025aa5;
+  background-color: #92924b;
 }
 
 .com-container{
