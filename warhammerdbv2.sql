@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Cze 13, 2024 at 12:45 PM
+-- Generation Time: Cze 21, 2024 at 05:35 PM
 -- Wersja serwera: 10.4.32-MariaDB
 -- Wersja PHP: 8.2.12
 
@@ -85,9 +85,20 @@ CREATE TABLE `recenzje` (
 --
 
 INSERT INTO `recenzje` (`id`, `idArtykulu`, `nick`, `tresc`, `data`) VALUES
-(14, 3, 'Admin', 'dfgdfgdfgdgdg', '2024-05-26 17:29:32'),
 (15, 1, 'Mikeru', 'Fajne', '2024-05-26 17:45:58'),
 (18, 3, 'Admin1', 'tdfhgfh', '2024-06-12 13:51:13');
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla tabeli `ulubione`
+--
+
+CREATE TABLE `ulubione` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `idArtykulu` int(10) UNSIGNED NOT NULL,
+  `idUzytkownika` int(10) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
 -- --------------------------------------------------------
 
@@ -96,7 +107,7 @@ INSERT INTO `recenzje` (`id`, `idArtykulu`, `nick`, `tresc`, `data`) VALUES
 --
 
 CREATE TABLE `uzytkownicy` (
-  `id` int(11) NOT NULL,
+  `id` int(11) UNSIGNED NOT NULL,
   `login` varchar(50) NOT NULL,
   `haslo` varchar(50) NOT NULL,
   `email` varchar(50) NOT NULL,
@@ -138,6 +149,14 @@ ALTER TABLE `recenzje`
   ADD KEY `idArtykulu` (`idArtykulu`);
 
 --
+-- Indeksy dla tabeli `ulubione`
+--
+ALTER TABLE `ulubione`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `idArtykulu` (`idArtykulu`),
+  ADD KEY `idUzytkownika` (`idUzytkownika`);
+
+--
 -- Indeksy dla tabeli `uzytkownicy`
 --
 ALTER TABLE `uzytkownicy`
@@ -163,13 +182,19 @@ ALTER TABLE `kategorie`
 -- AUTO_INCREMENT for table `recenzje`
 --
 ALTER TABLE `recenzje`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+
+--
+-- AUTO_INCREMENT for table `ulubione`
+--
+ALTER TABLE `ulubione`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `uzytkownicy`
 --
 ALTER TABLE `uzytkownicy`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Constraints for dumped tables
@@ -186,6 +211,13 @@ ALTER TABLE `artykuly`
 --
 ALTER TABLE `recenzje`
   ADD CONSTRAINT `recenzje_ibfk_1` FOREIGN KEY (`idArtykulu`) REFERENCES `artykuly` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `ulubione`
+--
+ALTER TABLE `ulubione`
+  ADD CONSTRAINT `ulubione_ibfk_1` FOREIGN KEY (`idArtykulu`) REFERENCES `artykuly` (`id`),
+  ADD CONSTRAINT `ulubione_ibfk_2` FOREIGN KEY (`idUzytkownika`) REFERENCES `uzytkownicy` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

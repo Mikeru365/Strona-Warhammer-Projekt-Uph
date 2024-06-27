@@ -9,6 +9,24 @@ session_start();
     <link rel="stylesheet" href="stylewarhammer.css">
     <script src="Admin.js"></script>
     <link rel="icon" type="image/x-icon" href="Sigmarite_Icon.ico">
+    <style>
+    body {
+            background-image: url('TłoAdmin.png'); 
+            background-size: cover; 
+            background-repeat: no-repeat; 
+            background-position: center; 
+            background-attachment: fixed; 
+            margin: 0;
+            padding: 0;
+            color: #333;  
+        }
+
+
+        .form-container textarea {
+            height: 400px;
+        }
+        
+   </style>
 </head>
 <body>
     <div class="navbar">
@@ -23,6 +41,9 @@ session_start();
         <a href="Wydarzenia.php">Wydarzenia</a>
         <?php if(isset($_SESSION["login"])): ?>
             <a href="myReviews.php">Moje recenzje</a>
+            <?php if($_SESSION["rola"] == "admin"): ?>
+            <a href="adminPanel.php">Panel Admina</a>
+            <?php endif; ?>
             <a href="logout.php">Wyloguj</a>
         <?php else: ?>
             <a href="login.php" class="przyciskLogowania">Zaloguj się</a>
@@ -30,16 +51,18 @@ session_start();
     </div>
 
     <select id="opcjeAdmina" name="opcjeAdmina" onchange="przekieruj()">
-            <option value="adminPanel.php">Dodaj nową Kategorie</option>
-            <option value="evantForm.php">Dodaj nowe Wydarzenie</option>
-            <option value="commentForm.php">Komentarze</option>
+        <option value="adminPanel.php">Dodaj nową Kategorie</option>
+        <option value="evantForm.php">Dodaj nowe Wydarzenie</option>
+        <option value="deleteEventForm.php">Usuń/edytuj Wydarzenie</option>
+        <option value="commentForm.php">Komentarze</option>
     </select>
 
     <h2>Dodaj Nowe Wydarzenie</h2>
+<div class="form-container">
 
     <form action="insertEvent.php" method="post" enctype="multipart/form-data">
-    <label for="tytul">Tytuł:</label><br>
-    <input type="text" id="tytul" name="tytul"><br><br>
+    <label for="tytul">Tytuł:</label>
+    <input type="text" id="tytul" name="tytul"><br>
 
     <p>Kategoria: 
             <select name="idKategorii">
@@ -57,14 +80,14 @@ session_start();
 
         <br>
     
-    <label for="tresc">Tresc:</label><br>
-    <textarea id="tresc" name="tresc"></textarea><br><br>
+    <label for="tresc">Tresc:</label>
+    <textarea id="tresc" name="tresc"></textarea><br>
     
-    <label for="obrazek">Obrazek:</label><br>
-    <input type="file" id="obrazek" name="obrazek"><br><br>
+    <label for="obrazek">Obrazek:</label>
+    <input type="file" id="obrazek" name="obrazek"><br>
     
     <input type="submit" value="Dodaj Wydarzenie">
-</form>
-
+   </form>
+</div>
 </body>
 </html>

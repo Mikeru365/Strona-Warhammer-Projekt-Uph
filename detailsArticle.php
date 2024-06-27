@@ -8,8 +8,9 @@ session_start();
     <meta charset="UTF-8" />
     <title>Artykuł</title>
     <link rel="stylesheet" href="stylewarhammer.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <link rel="icon" type="image/x-icon" href="Sigmarite_Icon.ico">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="scriptFav.js"></script>
 </head>
 
 <body>
@@ -27,13 +28,15 @@ session_start();
              <a href="Wydarzenia.php">Wydarzenia</a>
              <?php if(isset($_SESSION["login"])): ?>
             <a href="myReviews.php">Moje recenzje</a>
+            <?php if($_SESSION["rola"] == "admin"): ?>
+            <a href="adminPanel.php">Panel Admina</a>
+            <?php endif; ?>
             <a href="logout.php">Wyloguj</a>
         <?php else: ?>
             <a href="login.php" class="przyciskLogowania">Zaloguj się</a>
         <?php endif; ?>
      </div>
 
-<div class="artykul">
      <?php
     $id = $_GET["id"];
     $conn = new mysqli("localhost", "root", "", "warhammerdbv2");
@@ -47,8 +50,11 @@ session_start();
     echo "<img src='obrazki/{$row->obrazek}' alt='{$row->tytul}'>";
     echo "<p>" . nl2br($row->tresc) . "</p>";
     echo "</div>";
+
+    
     ?>
-</div>
+
+    
     <hr>
 <div class="dodajRecenzjeBlok">
     <h2>Dodaj recenzję</h2>
@@ -61,6 +67,8 @@ session_start();
         <input type="submit" value="Dodaj recenzję" id="przyciskRecenzja">
     </form>
 </div>
+
+
 
 <div class="recenzjeBlok">
     <h2>Recenzje</h2>

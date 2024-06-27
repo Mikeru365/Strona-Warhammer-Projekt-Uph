@@ -46,6 +46,9 @@ session_start();
             <a href="Wydarzenia.php">Wydarzenia</a>
             <?php if(isset($_SESSION["login"])): ?>
             <a href="myReviews.php">Moje recenzje</a>
+            <?php if($_SESSION["rola"] == "admin"): ?>
+            <a href="adminPanel.php">Panel Admina</a>
+            <?php endif; ?>
             <a href="logout.php">Wyloguj</a>
         <?php else: ?>
             <a href="login.php" class="przyciskLogowania">Zaloguj się</a>

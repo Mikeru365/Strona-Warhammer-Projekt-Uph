@@ -21,6 +21,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["delete_review_id"])) {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="Admin.js"></script>
     <link rel="icon" type="image/x-icon" href="Sigmarite_Icon.ico">
+    <style>
+    body {
+            background-image: url('TłoAdmin.png'); 
+            background-size: cover; 
+            background-repeat: no-repeat; 
+            background-position: center; 
+            background-attachment: fixed; 
+            margin: 0;
+            padding: 0;
+            color: #333; 
+        }
+   </style>
 </head>
 <body>
     <div class="navbar">
@@ -35,6 +47,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["delete_review_id"])) {
         <a href="Wydarzenia.php">Wydarzenia</a>
         <?php if(isset($_SESSION["login"])): ?>
             <a href="myReviews.php">Moje recenzje</a>
+            <?php if($_SESSION["rola"] == "admin"): ?>
+            <a href="adminPanel.php">Panel Admina</a>
+            <?php endif; ?>
             <a href="logout.php">Wyloguj</a>
         <?php else: ?>
             <a href="login.php" class="przyciskLogowania">Zaloguj się</a>
@@ -44,10 +59,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["delete_review_id"])) {
     <select id="opcjeAdmina" name="opcjeAdmina" onchange="przekieruj()">
         <option value="adminPanel.php">Dodaj nową Kategorie</option>
         <option value="evantForm.php">Dodaj nowe Wydarzenie</option>
+        <option value="deleteEventForm.php">Usuń/edytuj Wydarzenie</option>
         <option value="commentForm.php">Komentarze</option>
     </select>
 
-    
+    <div class="com-container">
     <?php
     $sql = "SELECT a.id AS idArtykulu, a.tytul, r.id AS idRecenzji, r.nick, r.tresc AS trescRecenzji, r.data 
             FROM artykuly a 
@@ -83,6 +99,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["delete_review_id"])) {
     }
     $conn->close();
     ?>
-
+</div>
 </body>
 </html>

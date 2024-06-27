@@ -24,6 +24,9 @@
             <a href="Wydarzenia.php">Wydarzenia</a>
             <?php if(isset($_SESSION["login"])): ?>
             <a href="myReviews.php">Moje recenzje</a>
+            <?php if($_SESSION["rola"] == "admin"): ?>
+            <a href="adminPanel.php">Panel Admina</a>
+            <?php endif; ?>
             <a href="logout.php">Wyloguj</a>
         <?php else: ?>
             <a href="login.php" class="przyciskLogowania">Zaloguj się</a>
@@ -36,14 +39,14 @@
  if (isset($_POST["login"])) {
  $login = $_POST["login"];
  $haslo = $_POST["haslo"];
-
+ 
  $sql = "SELECT * FROM uzytkownicy WHERE login='$login' AND haslo='" . md5($haslo) ."'";
  $result = $conn->query($sql);
  if ($result->num_rows == 1) {
     $row = $result->fetch_assoc();
     $_SESSION["login"] = $login;
     $_SESSION["rola"] = $row["rola"];
-
+    $_SESSION["id"] = $result->fetch_object()->id;
     if ($_SESSION["rola"] == "admin") {
         header("Location: adminPanel.php");
         exit();

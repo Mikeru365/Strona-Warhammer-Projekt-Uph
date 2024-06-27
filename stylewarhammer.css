@@ -2,9 +2,10 @@ body {
     margin: 0;
     font-family: Arial, Helvetica, sans-serif;
     text-align: center;
-    background-color: #d3d3c0;
+    background-color: #d3d3c0; 
   }
 
+  
 
 
   
@@ -511,7 +512,7 @@ form input[type="submit"]:hover {
 
 .tloWydarzenia {
   padding: 20px;
-  background-color: rgb(151, 153, 125);
+  background-color:#fffed5;
   margin: 20px;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -724,4 +725,142 @@ html, body {
 }
   
 
+/* Admin Options Dropdown */
+select#opcjeAdmina {
+  margin: 20px;
+  padding: 10px;
+  font-size: 16px;
+  
+}
 
+/* Article List Styles */
+.article-list {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 10px;
+  background-color: #fffed5;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.article {
+  border-bottom: 1px solid #ddd;
+  padding: 10px 0;
+}
+
+.article h2 {
+  margin: 0;
+  font-size: 20px;
+}
+
+.article-btn {
+  margin-top: 10px;
+
+}
+
+.article-btn .btn-delete, .article-btn a {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 4px;
+  text-decoration: none;
+  color: white;
+}
+
+.article-btn .btn-delete {
+  background-color: #d9534f;
+  border: none;
+  cursor: pointer;
+}
+
+.article-btn .btn-delete:hover {
+  background-color: #c9302c;
+}
+
+.article-btn a {
+  background-color: #0275d8;
+}
+
+.article-btn a:hover {
+  background-color: #025aa5;
+}
+
+.com-container{
+  max-width: 1000px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: rgba(255, 254, 241, 0.9); 
+  border-radius: 10px;
+}
+
+.form-container {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: rgba(255, 254, 241, 0.9); 
+  border-radius: 10px;
+}
+
+.form-container h1 {
+  text-align: center;
+  color: #145f63;
+}
+
+.form-container form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-container form div {
+  margin-bottom: 15px;
+}
+
+.form-container label {
+  display: block;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+.form-container input[type="text"], 
+.form-container textarea,
+.form-container select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box; 
+}
+
+.form-container textarea {
+  resize: none;
+}
+
+
+.form-container input[type="file"] {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box; 
+}
+
+.form-container input[type="submit"] {
+  background-color: #9da048;
+  color: white;
+  border: none;
+  padding: 15px;
+  text-align: center;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.form-container input[type="submit"]:hover {
+  background-color: #d1da68;
+}
+
+.form-container a {
+  display: block;
+  text-align: center;
+  margin-top: 10px;
+  color: #333;
+  text-decoration: none;
+}
